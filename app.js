@@ -1,3 +1,5 @@
+// Target the container
+const inputDiv = document.querySelector(".input");
 // Target the input and clear it
 const input = document.querySelector("input");
 input.value = "";
@@ -11,11 +13,15 @@ const outline = document.querySelector(".input__outline");
 // Target results
 const ul = document.querySelector("ul");
 
+// Target clear button
+const clearInput = document.querySelector("i");
+
 // Handle user input
 input.addEventListener("input", function () {
 
-    // Clear the select from any previous research
-    clearSelectOptions();
+    ul.classList.remove("visible");
+
+    this.value.length ? clearInput.classList.add("visible") : clearInput.classList.remove("visible");
 
     // When the user has inputted 5 characters
     if (this.value.length === 5) {
@@ -38,7 +44,7 @@ input.addEventListener("input", function () {
             });
 
         ul.style.top = `${input.getBoundingClientRect().height}px`;
-        ul.style.display = "block";
+        ul.classList.add("visible");
 
     }
 
@@ -50,7 +56,7 @@ const clearSelectOptions = () => {
     while (ul.firstChild) {
         ul.removeChild(ul.firstChild);
     }
-    ul.style.display = "none";
+    ul.style.top = null;
 
 }
 
@@ -58,6 +64,18 @@ const clearSelectOptions = () => {
 const addSelectOption = (cityCode = 0, cityName = "Aucun résultat") => {
 
     let cityOption1 = document.createElement("li");
+
+    if (cityCode) {
+        let cityUrl = document.createElement("a");
+        cityUrl.setAttribute('target', '_blank');
+        cityUrl.href = `https://fr.wikipedia.org/wiki/${cityName}`;
+        let cityUrlText = document.createTextNode(cityName);
+        cityUrl.appendChild(cityUrlText);
+        cityOption1.appendChild(cityUrl);
+        ul.appendChild(cityOption1);
+        return;
+    }
+
     cityOption1.textContent = cityName;
     ul.appendChild(cityOption1);
 
@@ -77,4 +95,33 @@ input.addEventListener("blur", function () {
         labelOutline.classList.remove("outline--open");
     };
     outline.classList.remove("input__outline--focus");
+})
+
+
+ul.addEventListener("transitionend", function () {
+
+    if (!this.classList.contains("visible")) {
+        // Clear the select from any previous research
+        clearSelectOptions();
+    }
+
+});
+
+clearInput.addEventListener("click", function (e) {
+
+    ul.classList.remove("visible");
+    input.value = "";
+    this.classList.remove("visible");
+
+    label.classList.remove("focused");
+    labelOutline.classList.remove("outline--open");
+
+    e.stopPropagation();
+
+})
+
+
+
+inputDiv.addEventListener("click", function () {
+    input.focus();
 })

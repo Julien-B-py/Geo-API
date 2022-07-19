@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-/* #d00b58 */
-
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +12,7 @@ body {
     align-items: center;
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
-    background-color: #efc293;
+    background-color: #DBE2EF;
 }
 
 .input {
@@ -22,24 +20,39 @@ body {
     width: 30ch;
     height: 50px;
     display: flex;
+    cursor: text;
 }
 
 .input:hover .input__outline:not(.input__outline--focus) {
-    border: 1px solid #8f84b0;
+    border: 1px solid #3F72AF;
 }
 
 .input .input__outline {
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 1px solid #bcb5cf;
+    border: 1px solid #9fb9d7;
     border-radius: 4px;
     pointer-events: none;
     transition: border 100ms;
 }
 
 .input .input__outline--focus {
-    border: 2px solid #1f0860;
+    border: 2px solid #112D4E;
+}
+
+.input i {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    color: #112D4E;
+    cursor: pointer;
+    transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.input i.visible {
+    transform: translateY(-50%) scale(1);
 }
 
 .input label {
@@ -52,15 +65,16 @@ body {
     pointer-events: none;
     padding-inline: 0.5rem;
     z-index: 2;
+    color: #9fb9d7;
 }
 
 .input label.focused {
     transform: translate(8px, -6px) scale(0.75);
-    color: #1f0860;
+    color: #112D4E;
 }
 
 .input label.outline {
-    background: linear-gradient(0deg, #fdfcf7 50%, #efc293 50%);
+    background: linear-gradient(0deg, #F9F7F7 50%, #DBE2EF 50%);
     transform: translate(8px, -6px) scale(0.75);
     color: transparent;
     z-index: 1;
@@ -72,17 +86,16 @@ body {
     opacity: 1;
 }
 
-
-
 .input input {
     border: none;
-    background-color: #fdfcf7;
+    background-color: #F9F7F7;
     width: 100%;
     outline: none;
     padding-inline: 14px;
     border-radius: 4px;
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
+    color: #112D4E;
 }
 
 .input ul {
@@ -91,22 +104,38 @@ body {
     border-radius: 4px;
     width: 100%;
     padding-block: 0.5rem;
-    display: none;
-    background-color: #d7af84;
-    max-height: 318px;
+    background-color: #fef6ec;
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: #bf9b76 #f7e1c9;
-    color: #1f0860;
+    scrollbar-color: #3F72AF #edf1f7;
+    color: #112D4E;
+    max-height: 0;
+    opacity: 0;
+    transition: all 300ms;
+}
+
+.input ul.visible {
+    opacity: 1;
+    max-height: 318px;
 }
 
 .input ul li {
-    padding: .375rem 1rem;
     cursor: pointer;
 }
 
+.input ul li:only-child {
+    padding: .375rem 1rem;
+}
+
 .input ul li:hover {
-    background-color: #dbb790;
+    background-color: #DBE2EF40;
+}
+
+.input ul li a {
+    text-decoration: none;
+    color: #112D4E;
+    display: block;
+    padding: .375rem 1rem;
 }
 
 span {
