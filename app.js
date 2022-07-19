@@ -2,14 +2,14 @@
 const input = document.querySelector("input");
 input.value = "";
 
-// Target the select
-const select = document.querySelector("select");
-
 // Target labels
 const [label, labelOutline] = document.querySelectorAll("label");
 
 // Target outline
 const outline = document.querySelector(".input__outline");
+
+// Target results
+const ul = document.querySelector("ul");
 
 // Handle user input
 input.addEventListener("input", function () {
@@ -37,23 +37,30 @@ input.addEventListener("input", function () {
 
             });
 
+        ul.style.top = `${input.getBoundingClientRect().height}px`;
+        ul.style.display = "block";
+
     }
 
 });
 
 // Remove all options from the select
 const clearSelectOptions = () => {
-    while (select.firstChild) {
-        select.removeChild(select.firstChild);
+
+    while (ul.firstChild) {
+        ul.removeChild(ul.firstChild);
     }
+    ul.style.display = "none";
+
 }
 
 // Add an option to the select
 const addSelectOption = (cityCode = 0, cityName = "Aucun résultat") => {
-    let cityOption = document.createElement("option");
-    cityOption.value = cityCode;
-    cityOption.text = cityName;
-    select.appendChild(cityOption);
+
+    let cityOption1 = document.createElement("li");
+    cityOption1.textContent = cityName;
+    ul.appendChild(cityOption1);
+
 }
 
 

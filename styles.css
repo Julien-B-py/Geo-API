@@ -85,6 +85,30 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+.input ul {
+    position: absolute;
+    list-style: none;
+    border-radius: 4px;
+    width: 100%;
+    padding-block: 0.5rem;
+    display: none;
+    background-color: #d7af84;
+    max-height: 318px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #bf9b76 #f7e1c9;
+    color: #1f0860;
+}
+
+.input ul li {
+    padding: .375rem 1rem;
+    cursor: pointer;
+}
+
+.input ul li:hover {
+    background-color: #dbb790;
+}
+
 span {
     padding-left: 5px;
     padding-right: 5px;
