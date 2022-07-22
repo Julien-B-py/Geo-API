@@ -8,11 +8,17 @@
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
     background-color: #DBE2EF;
+    gap: 1.25rem;
+}
+
+h1 {
+    color: #112D4E;
 }
 
 .input {
@@ -121,10 +127,6 @@ body {
 
 .input ul li {
     cursor: pointer;
-}
-
-.input ul li:only-child {
-    padding: .375rem 1rem;
 }
 
 .input ul li:hover {
